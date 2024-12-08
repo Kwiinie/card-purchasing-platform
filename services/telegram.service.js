@@ -15,7 +15,7 @@ const TelegramService = {
   started() {
     this.bot.on('message', async msg => {
       const chatId = msg.chat.id
-      const text = msg.text.trim() // Loại bỏ khoảng trắng thừa
+      const text = typeof msg.text === 'string' ? msg.text.trim() : '';
       const client = await getRedisClient()
       const otp = generateOTP()
 
